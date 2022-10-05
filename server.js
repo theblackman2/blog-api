@@ -15,6 +15,12 @@ app.get("/", (req, res) => {
   res.send("Hello from the backend");
 });
 
+app.use("/posts", require("./routes/posts"));
+
+app.all("*", (req, res) => {
+  res.status(404).send("The request route doesn't exists");
+});
+
 app.listen(PORT, () => {
   console.log(`The server is listening to http://localhost:${PORT}`);
 });
