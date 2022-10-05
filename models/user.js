@@ -1,31 +1,31 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./../services/sequelize");
 
-class Post extends Model {}
+class User extends Model {}
 
-Post.init(
+User.init(
   {
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    content: {
-      type: DataTypes.TEXT,
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    athorr_id: {
-      type: DataTypes.INTEGER,
+    password: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    category_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    refreshToke: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: "post",
+    modelName: "user",
   }
 ).sync();
 
-module.exports = Post;
+module.exports = User;
