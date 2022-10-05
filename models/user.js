@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./../services/sequelize");
+const Post = require("./post");
 
 class User extends Model {}
 
@@ -26,6 +27,10 @@ User.init(
     sequelize,
     modelName: "user",
   }
-).sync();
+);
+
+User.hasMany(Post);
+
+User.sync();
 
 module.exports = User;

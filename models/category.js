@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./../services/sequelize");
+const Post = require("./post");
 
 class Category extends Model {}
 
@@ -14,6 +15,10 @@ Category.init(
     sequelize,
     modelName: "category",
   }
-).sync();
+);
+
+Category.hasMany(Post);
+
+Category.sync();
 
 module.exports = Category;

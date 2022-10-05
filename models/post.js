@@ -1,5 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./../services/sequelize");
+const User = require("./user");
+const Category = require("./category");
+const Comment = require("./comment");
 
 class Post extends Model {}
 
@@ -13,19 +16,17 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    athorr_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    category_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   },
   {
     sequelize,
     modelName: "post",
   }
-).sync();
+);
+
+Post.belongsTo(Category);
+Post.belongsTo(User);
+Post.hasMany(Comment);
+
+Post.sync();
 
 module.exports = Post;
