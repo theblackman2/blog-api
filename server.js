@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
 
 app.use("/posts", require("./routes/posts"));
 
+app.use("/users", require("./routes/users"));
+
 app.all("*", (req, res) => {
   res.status(404).send("The request route doesn't exists");
 });

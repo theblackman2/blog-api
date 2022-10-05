@@ -1,11 +1,7 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("./../services/sequelize");
-const Post = require("./post");
+const { DataTypes } = require("sequelize");
 
-class User extends Model {}
-
-User.init(
-  {
+module.exports = (sequelize) => {
+  sequelize.define("user", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,15 +18,5 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-  },
-  {
-    sequelize,
-    modelName: "user",
-  }
-);
-
-User.hasMany(Post);
-
-User.sync();
-
-module.exports = User;
+  });
+};
